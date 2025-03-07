@@ -1,0 +1,15 @@
+﻿**/.idea
+**/.vscode
+**/.vs
+[Ll]ibrary
+[Ll]ogs
+[Oo]bj
+[Tt]emp
+[Uu]serSettings
+**/*.csproj
+**/*.sln
+
+**/Playground.unity
+**/Playground/
+**/Playground.meta
+**/Playground.unity.meta
