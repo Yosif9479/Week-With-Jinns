@@ -14,12 +14,14 @@ namespace Items
         [SerializeField] private AudioClip _openSound;
         [SerializeField] private AudioClip _closeSound;
         
-        private Vector3 _closedRotation;
-        private Vector3 _openRotation;
+        private Quaternion _closedRotation;
+        private Quaternion _openRotation;
         
         private AudioSource _audioSource;
-        private Vector3 _targetRotation;
+        private Quaternion _targetRotation;
         private bool _isRotating;
+
+        private const float RotationFactor = 90f;
 
         private void Awake()
         {
@@ -28,13 +30,16 @@ namespace Items
 
         private void Start()
         {
-            _closedRotation = transform.localEulerAngles;
-            _openRotation = transform.localEulerAngles + Vector3.up * 90;
+            InitOpenAndClosedRotation();
             
-            if (_closedRotation.y >= 360) _closedRotation.y -= 360;
-            if (_openRotation.y >= 360) _openRotation.y -= 360;
-            
-            if (_openByDefault) transform.localEulerAngles = _openRotation;
+            if (_openByDefault) transform.localRotation = _openRotation;
+        }
+
+        private void InitOpenAndClosedRotation()
+        {
+            _closedRotation = transform.localRotation;
+            Vector3 openEulers = transform.localEulerAngles + Vector3.up * RotationFactor;
+            _openRotation = Quaternion.Euler(openEulers); 
         }
 
         private void FixedUpdate()
@@ -46,11 +51,9 @@ namespace Items
         {
             if (_isRotating) return;
             
-            bool isOpen = Mathf.Approximately(transform.localEulerAngles.y, _openRotation.y);
+            bool isOpen = transform.localRotation == _openRotation;
             
-            Vector3 rotation = isOpen ? _closedRotation : _openRotation;
-            
-            _targetRotation = rotation;
+            _targetRotation = isOpen ? _closedRotation : _openRotation;
 
             _isRotating = true;
 
@@ -59,11 +62,11 @@ namespace Items
 
         private void Rotate()
         {
-            Quaternion rotation = Quaternion.Euler(_targetRotation);
+            float step = RotationFactor / _rotationTimeSeconds * Time.fixedDeltaTime;
             
-            transform.localRotation = Quaternion.RotateTowards(transform.localRotation, rotation, 90 / _rotationTimeSeconds * Time.fixedDeltaTime);
+            transform.localRotation = Quaternion.RotateTowards(transform.localRotation, _targetRotation, step);
 
-            if (Mathf.Approximately(transform.localEulerAngles.y, _targetRotation.y)) _isRotating = false;
+            if (transform.localRotation == _targetRotation) _isRotating = false;
         }
     }
 }
