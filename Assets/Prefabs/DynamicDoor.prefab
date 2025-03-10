@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2571849764711075426}
   - component: {fileID: 7429403194653113580}
   - component: {fileID: 3345833304640451695}
+  - component: {fileID: -7031369495076431199}
   m_Layer: 0
   m_Name: DynamicDoor
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.70710677, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 1, y: 0, z: 1.25}
-  m_LocalScale: {x: 0.9, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -221,6 +222,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a64e39caadf4d17bffdc1defc24f1ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _openOnStart: 0
+  _openByDefault: 0
+  _rotationTimeSeconds: 0.5
   _openSound: {fileID: 8300000, guid: 4f2eddb3b895b7b47a85f5b79a01249d, type: 3}
   _closeSound: {fileID: 8300000, guid: f9a2e7fa23191114aa24971a0c7898ec, type: 3}
+--- !u!54 &-7031369495076431199
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5397814260894387726}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0

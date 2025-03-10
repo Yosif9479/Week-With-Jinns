@@ -8,8 +8,8 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: e0cbba72a7140194ca96c594ebc9241f
-  m_OcclusionCullingData: {fileID: 36300000, guid: 6b529309c3d0ece4b9134442f8b8be40, type: 2}
+  m_SceneGUID: 00000000000000000000000000000000
+  m_OcclusionCullingData: {fileID: 0}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -2448,15 +2448,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3680646973282276912, guid: 2bdc96826cbd070478db374a96121832, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071071
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 3680646973282276912, guid: 2bdc96826cbd070478db374a96121832, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3680646973282276912, guid: 2bdc96826cbd070478db374a96121832, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.7071065
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 3680646973282276912, guid: 2bdc96826cbd070478db374a96121832, type: 3}
       propertyPath: m_LocalRotation.z
@@ -2468,7 +2468,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3680646973282276912, guid: 2bdc96826cbd070478db374a96121832, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
+      value: 270
       objectReference: {fileID: 0}
     - target: {fileID: 3680646973282276912, guid: 2bdc96826cbd070478db374a96121832, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
