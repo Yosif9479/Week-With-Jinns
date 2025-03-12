@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _openByDefault: 0
-  _rotationTimeSeconds: 0.5
+  _rotationTimeSeconds: 0.4
   _openSound: {fileID: 8300000, guid: 4f2eddb3b895b7b47a85f5b79a01249d, type: 3}
   _closeSound: {fileID: 8300000, guid: f9a2e7fa23191114aa24971a0c7898ec, type: 3}
 --- !u!54 &-7031369495076431199

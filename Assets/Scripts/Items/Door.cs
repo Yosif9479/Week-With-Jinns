@@ -31,8 +31,6 @@ namespace Items
         private void Start()
         {
             InitOpenAndClosedRotation();
-            
-            if (_openByDefault) transform.localRotation = _openRotation;
         }
 
         private void InitOpenAndClosedRotation()
@@ -40,9 +38,15 @@ namespace Items
             _closedRotation = transform.localRotation;
             Vector3 openEulers = transform.localEulerAngles + Vector3.up * RotationFactor;
             _openRotation = Quaternion.Euler(openEulers); 
+    
+            if (_openByDefault) 
+            {
+                transform.localRotation = _openRotation;
+                _targetRotation = _openRotation;
+            }
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             if (_isRotating) Rotate();
         }
@@ -50,19 +54,19 @@ namespace Items
         public void Interact()
         {
             if (_isRotating) return;
-            
-            bool isOpen = transform.localRotation == _openRotation;
-            
+    
+            bool isOpen = Quaternion.Angle(transform.localRotation, _openRotation) < 1f;
+    
             _targetRotation = isOpen ? _closedRotation : _openRotation;
 
             _isRotating = true;
 
-            _audioSource.PlayOneShot(isOpen ? _openSound : _closeSound);
+            _audioSource.PlayOneShot(isOpen ? _closeSound : _openSound);
         }
 
         private void Rotate()
         {
-            float step = RotationFactor / _rotationTimeSeconds * Time.fixedDeltaTime;
+            float step = RotationFactor / _rotationTimeSeconds * Time.deltaTime;
             
             transform.localRotation = Quaternion.RotateTowards(transform.localRotation, _targetRotation, step);
 
