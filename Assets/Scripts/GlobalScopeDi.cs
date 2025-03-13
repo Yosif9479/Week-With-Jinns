@@ -1,4 +1,5 @@
-﻿using Interfaces;
+﻿using Basic;
+using Interfaces;
 using PlayerScripts;
 using UnityEngine;
 using VContainer.Unity;
@@ -21,5 +22,6 @@ public class GlobalScopeDi : LifetimeScope
 	private void Start()
 	{
 		Container.Instantiate(_playerPrefab);
+		DayTime.Start();
 	}
 }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6867193922708769876}
   - component: {fileID: 7401779764252615647}
   - component: {fileID: 570654612062226013}
+  - component: {fileID: 7772583120832637199}
   m_Layer: 0
   m_Name: Window
   m_TagString: Untagged
@@ -92,6 +93,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7772583120832637199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125862305546728630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9c0c9b3be124ccf990d2ed3ba429ee1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lights:
+  - {fileID: 7023019272962703519}
+  - {fileID: 8638277398498991358}
+  _timeSettings:
+  - Hours: 13
+    Intensity: 5
+    Color: {r: 1, g: 0.96862745, b: 0.84313726, a: 1}
+  - Hours: 18
+    Intensity: 1
+    Color: {r: 0.9607843, g: 0.91764706, b: 0.74509805, a: 1}
+  - Hours: 20
+    Intensity: 0.1
+    Color: {r: 0.7647059, g: 0.84313726, b: 0.9411765, a: 1}
+  _useDynamicColors: 1
 --- !u!1 &346327186108563616
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,7 +164,7 @@ Light:
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
-  m_Range: 10
+  m_Range: 20
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -258,7 +285,7 @@ Light:
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
-  m_Range: 10
+  m_Range: 20
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
