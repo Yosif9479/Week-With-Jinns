@@ -55,7 +55,7 @@ namespace Items
         {
             if (_isRotating) return;
     
-            bool isOpen = Quaternion.Angle(transform.localRotation, _openRotation) < 1f;
+            bool isOpen = transform.localRotation == _openRotation;
     
             _targetRotation = isOpen ? _closedRotation : _openRotation;
 

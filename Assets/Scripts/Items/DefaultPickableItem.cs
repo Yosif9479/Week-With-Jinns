@@ -7,6 +7,10 @@ namespace Items
     public class DefaultPickableItem : Pickable
     {
         [SerializeField] private float _dropForce = 1f;
+        [SerializeField] private bool _useCustomRotation;
+        [SerializeField] private Vector3 _customRotation;
+        [SerializeField] private bool _useCustomPosition;
+        [SerializeField] private Vector3 _customPosition;
         
         private Rigidbody _rigidbody;
         private Camera _camera;
@@ -28,8 +32,11 @@ namespace Items
         {
             base.OnPickedUp();
             
-            transform.rotation = Quaternion.identity;
-            transform.localPosition = Vector3.zero;
+            Quaternion rotation = _useCustomRotation ? Quaternion.Euler(_customRotation) : Quaternion.identity;
+            Vector3 position = _useCustomPosition ? _customPosition : Vector3.zero;
+            
+            transform.localRotation = rotation;
+            transform.localPosition = position;
             _rigidbody.isKinematic = true;
             _rigidbody.useGravity = false;
         }
@@ -38,7 +45,7 @@ namespace Items
         {
             base.OnDropped();
             
-            transform.rotation = Quaternion.identity;
+            transform.localRotation = Quaternion.identity;
             _rigidbody.isKinematic = false;
             _rigidbody.useGravity = true;
             _rigidbody.AddForce(_camera.transform.forward * _dropForce, ForceMode.Impulse);
