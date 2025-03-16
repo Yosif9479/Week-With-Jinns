@@ -11,23 +11,16 @@ namespace Items
         [SerializeField] private TextMeshPro _text;
         private bool _isStopped;
 
-        private void Start()
+        private void Update()
         {
-            StartCoroutine(StartClock());
+            UpdateTimeText();
         }
 
-        private IEnumerator StartClock()
+        private void UpdateTimeText()
         {
-            _isStopped = false;
-
-            while (!_isStopped)
-            {
-                yield return new WaitForSeconds(1f);
-
-                TimeSpan time = DayTime.CurrentTime;
+            TimeSpan time = DayTime.CurrentTime;
                 
-                _text.text = $"{time.Hours:00}:{time.Minutes:00}";
-            }
+            _text.text = $"{time.Hours:00}:{time.Minutes:00}";
         }
     }
 }

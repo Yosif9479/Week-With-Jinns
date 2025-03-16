@@ -9,22 +9,25 @@ namespace Items
     {
         [SerializeField] private int[] _hours;
         private ReflectionProbe _reflectionProbe;
-
+        private int _lastRenderHour;
+        
         private void Awake()
         {
             _reflectionProbe = GetComponent<ReflectionProbe>();
+            
+            _reflectionProbe.RenderProbe();
         }
 
-        private void Start()
+        private void FixedUpdate()
         {
-            _reflectionProbe.RenderProbe();
-            
-            InvokeRepeating(nameof(TryRender), 0f,  60.5f);
+            TryRender();
         }
 
         private void TryRender()
         {
+            if (_lastRenderHour == DayTime.CurrentTime.Hours) return;
             if (_hours.Contains(DayTime.CurrentTime.Hours)) _reflectionProbe.RenderProbe();
+            _lastRenderHour = DayTime.CurrentTime.Hours;
         }
     }
 }

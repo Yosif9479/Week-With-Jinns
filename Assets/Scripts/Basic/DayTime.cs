@@ -1,19 +1,22 @@
 ﻿using System;
 using UnityEngine;
+using VContainer.Unity;
 
 namespace Basic
 {
-    public static class DayTime
+    public class DayTime : ITickable
     {
         private const int DayStartHours = 9;
         private const int DayEndHours = 22;
+        private const float TimeSpeedMultiplier = 2f;
+        
+        private static float _passedTime;
+        
         public static TimeSpan CurrentTime
         {
             get
             {
-                TimeSpan timePassed = DateTime.Now - _startTime;
-                
-                int currentTime = DayStartHours * 60 + timePassed.Minutes * 60 + timePassed.Seconds;
+                var currentTime = Convert.ToInt32(DayStartHours * 60 + _passedTime);
                 int minutes = currentTime % 60;
                 int hours = Mathf.Clamp(currentTime / 60, DayStartHours, DayEndHours);
 
@@ -23,8 +26,11 @@ namespace Basic
             }
         }
 
-        private static DateTime _startTime = DateTime.Now;
+        public static DayOfWeek CurrentDay;
         
-        public static void Start() => _startTime = DateTime.Now;
+        public void Tick()
+        {
+            _passedTime += Time.deltaTime * TimeSpeedMultiplier;
+        }
     }
 }
