@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Basic;
 using Models;
+using PlayerScripts;
 using UnityEngine;
 
 namespace Items
@@ -31,11 +32,22 @@ namespace Items
         private void Start()
         {
             InsertFirstSetting();
+
+            Player.ClosedEyes += OnPlayerClosedEyes;
         }
 
         private void Update()
         {
             HandleLights();
+        }
+        
+        private void OnPlayerClosedEyes()
+        {
+            foreach (Light light in _lights)
+            {
+                light.intensity = _timeSettings[0].Intensity;
+                light.color = _timeSettings[0].Color;
+            }
         }
 
         private void HandleLights()

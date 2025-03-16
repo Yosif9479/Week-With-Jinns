@@ -1,4 +1,7 @@
-﻿using Interfaces;
+﻿using Enums;
+using Interfaces;
+using PlayerScripts;
+using TaskScripts;
 using UnityEngine;
 
 namespace Items
@@ -7,12 +10,15 @@ namespace Items
     {
         [SerializeField] private GameObject _water;
         [SerializeField] private Transform _handleTransform;
+        [SerializeField] private float _washTime = 5f;
 
+        private Player _player;
         private Quaternion _handleClosedRotation;
         [SerializeField] private Quaternion _handleOpenRotation;
 
         private void Start()
         {
+            _player = FindFirstObjectByType<Player>();
             _handleClosedRotation = _handleTransform.localRotation;
         }
         
@@ -21,6 +27,12 @@ namespace Items
             _water.SetActive(!_water.activeInHierarchy);
             
             bool isOpen = _water.activeInHierarchy;
+
+            if (isOpen)
+            {
+                _player.Stun(_washTime);
+                TaskSystem.TryCompleteTask(DayTask.WashHands);
+            }
             
             _handleTransform.localRotation =  isOpen ? _handleOpenRotation : _handleClosedRotation;
         }
