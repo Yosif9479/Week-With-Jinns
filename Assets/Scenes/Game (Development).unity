@@ -2666,6 +2666,10 @@ PrefabInstance:
       propertyPath: '_objectsToActivate.Array.data[1]'
       value: 
       objectReference: {fileID: 2820996103253964227}
+    - target: {fileID: 7655014416349926770, guid: 1dbd91d4a25214f4497a57dc5d5f39cf, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

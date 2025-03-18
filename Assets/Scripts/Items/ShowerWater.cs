@@ -32,5 +32,12 @@ namespace Items
 
             _playerIsShowering = true;
         }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (!other.CompareTag("Player")) return;
+            
+            _playerIsShowering = false;
+        }
     }
 }
