@@ -79,8 +79,6 @@ namespace PlayerScripts
             
             if (usable == null) return;
             
-            usable.Use();
-            
             Ray ray = _camera.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
             
             bool hit = Physics.Raycast(ray, out RaycastHit hitInfo, _settings.MaxDistance);
@@ -89,8 +87,21 @@ namespace PlayerScripts
             {
                 var canBeUsedOn = hitInfo.collider.GetComponent<ICanBeUsedOn>();
 
-                canBeUsedOn?.UseWith(heldItem);
+                if (canBeUsedOn != null)
+                {
+                    canBeUsedOn.UseWith(heldItem);
+                    usable.Use(heldItem);
+                }
+                else
+                {
+                    usable.Use();
+                }
             }
+            else
+            {
+                usable.Use();
+            }
+            
             
             ItemUsed?.Invoke();
         }
