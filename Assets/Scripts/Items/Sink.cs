@@ -31,10 +31,12 @@ namespace Items
             if (isOpen)
             {
                 _player.Stun(_washTime);
-                TaskSystem.TryCompleteTask(DayTask.WashHands);
+                Invoke(nameof(CompleteTask), _washTime);
             }
             
             _handleTransform.localRotation =  isOpen ? _handleOpenRotation : _handleClosedRotation;
         }
+        
+        private void CompleteTask() => TaskSystem.TryCompleteTask(DayTask.WashHands);
     }
 }

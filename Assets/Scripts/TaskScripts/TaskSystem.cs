@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Enums;
 using PlayerScripts;
 using UnityEngine;
+using UnityEngine.Events;
 using VContainer;
 using Random = UnityEngine.Random;
 
@@ -10,9 +11,11 @@ namespace TaskScripts
 {
     public static class TaskSystem
     {
+        public static event UnityAction<DayTask> CompletedTask; 
+        
         private const uint TaskAmount = 5;
-        public static List<DayTask> DayTasks { get; private set; } = new();
-        public static List<DayTask> FailedTasks { get; private set; } = new();
+        public static List<DayTask> DayTasks { get; } = new();
+        public static List<DayTask> FailedTasks { get; } = new();
 
         public static void Start()
         {
@@ -58,6 +61,8 @@ namespace TaskScripts
             if (!DayTasks.Contains(task)) return;
 
             DayTasks.Remove(task);
+            
+            CompletedTask?.Invoke(task);
         }
     }
 }

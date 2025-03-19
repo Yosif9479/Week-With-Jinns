@@ -1,4 +1,5 @@
 ﻿using Enums;
+using PlayerScripts;
 using TaskScripts;
 using UnityEngine;
 
@@ -11,6 +12,11 @@ namespace Items
         
         private bool _playerIsShowering;
         private float _showeredSeconds;
+
+        private void Start()
+        {
+            Player.ClosedEyes += () => _showeredSeconds = 0;
+        }
 
         private void Update()
         {
@@ -39,5 +45,7 @@ namespace Items
             
             _playerIsShowering = false;
         }
+
+        private void OnDisable() => _showeredSeconds = 0f;
     }
 }
