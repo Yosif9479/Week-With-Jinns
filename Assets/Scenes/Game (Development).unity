@@ -367,7 +367,7 @@ ReflectionProbe:
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_IntensityMultiplier: 1
   m_BlendDistance: 1
   m_HDR: 0
@@ -623,7 +623,7 @@ ReflectionProbe:
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_IntensityMultiplier: 1
   m_BlendDistance: 1
   m_HDR: 0
@@ -702,7 +702,7 @@ ReflectionProbe:
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_IntensityMultiplier: 1
   m_BlendDistance: 1
   m_HDR: 0
@@ -1180,7 +1180,7 @@ ReflectionProbe:
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_IntensityMultiplier: 1
   m_BlendDistance: 1
   m_HDR: 0
@@ -1895,7 +1895,7 @@ ReflectionProbe:
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_IntensityMultiplier: 1
   m_BlendDistance: 1
   m_HDR: 0
@@ -2095,7 +2095,7 @@ ReflectionProbe:
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_IntensityMultiplier: 1
   m_BlendDistance: 1
   m_HDR: 0
@@ -2277,17 +2277,17 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 820519510}
-  - {fileID: 966762167}
   - {fileID: 1083521420}
-  - {fileID: 1458541919}
   - {fileID: 1503117768}
   - {fileID: 759530447}
-  - {fileID: 687651533}
   - {fileID: 102598149}
-  - {fileID: 732982074}
   - {fileID: 1136074370}
-  - {fileID: 115097303}
   - {fileID: 1434408071}
+  - {fileID: 966762167}
+  - {fileID: 1458541919}
+  - {fileID: 687651533}
+  - {fileID: 732982074}
+  - {fileID: 115097303}
   - {fileID: 1509373490}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2651,6 +2651,10 @@ PrefabInstance:
       value: Bathroom Jinn
       objectReference: {fileID: 0}
     - target: {fileID: 3309655174130666811, guid: 1dbd91d4a25214f4497a57dc5d5f39cf, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309655174130666811, guid: 1dbd91d4a25214f4497a57dc5d5f39cf, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -2668,7 +2672,7 @@ PrefabInstance:
       objectReference: {fileID: 2820996103253964227}
     - target: {fileID: 7655014416349926770, guid: 1dbd91d4a25214f4497a57dc5d5f39cf, type: 3}
       propertyPath: m_LightProbeUsage
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
