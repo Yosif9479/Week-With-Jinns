@@ -46,7 +46,7 @@ namespace PlayerScripts
 
             Ray ray = _camera.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
             
-            bool hit = Physics.Raycast(ray, out RaycastHit hitInfo, _settings.MaxDistance);
+            bool hit = Physics.Raycast(ray, out RaycastHit hitInfo, _settings.MaxDistance, LayerMask.GetMask("Default"));
 
             if (!hit) return;
 

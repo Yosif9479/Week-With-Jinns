@@ -14,6 +14,7 @@ namespace Items
         
         private Rigidbody _rigidbody;
         private Camera _camera;
+        private RigidbodyInterpolation _interpolation;
         
         private void Awake()
         {
@@ -26,6 +27,8 @@ namespace Items
             _rigidbody.useGravity = true;
             
             _camera = Camera.main;
+            
+            _interpolation = _rigidbody.interpolation;
         }
 
         public override void OnPickedUp()
@@ -35,20 +38,22 @@ namespace Items
             Quaternion rotation = _useCustomRotation ? Quaternion.Euler(_customRotation) : Quaternion.identity;
             Vector3 position = _useCustomPosition ? _customPosition : Vector3.zero;
             
-            transform.localRotation = rotation;
-            transform.localPosition = position;
             _rigidbody.isKinematic = true;
             _rigidbody.useGravity = false;
+            transform.localRotation = rotation;
+            transform.localPosition = position;
+
+            _rigidbody.interpolation = RigidbodyInterpolation.None;
         }
 
         public override void OnDropped()
         {
             base.OnDropped();
             
-            transform.localRotation = Quaternion.identity;
             _rigidbody.isKinematic = false;
             _rigidbody.useGravity = true;
             _rigidbody.AddForce(_camera.transform.forward * _dropForce, ForceMode.Impulse);
+            _rigidbody.interpolation = _interpolation;
         }
     }
 }
