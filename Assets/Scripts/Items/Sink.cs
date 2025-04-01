@@ -15,6 +15,9 @@ namespace Items
         private Player _player;
         private Quaternion _handleClosedRotation;
         [SerializeField] private Quaternion _handleOpenRotation;
+        
+        public bool IsOpen =>  _water.activeInHierarchy ;
+        
 
         private void Start()
         {

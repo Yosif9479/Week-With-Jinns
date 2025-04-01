@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using Models;
 using Interfaces;
 using UnityEngine;
@@ -51,8 +50,8 @@ namespace PlayerScripts
             if (!hit) return;
 
             IPickable pickable = hitInfo.collider.GetComponent<IPickable>();
-
-            if (pickable != null)
+            
+            if (pickable?.CanBePickedUp() == true)
             {
                 DropItem(_);
                 hitInfo.collider.gameObject.transform.SetParent(_itemHolder);
@@ -71,9 +70,9 @@ namespace PlayerScripts
 
         private void UseItem(InputAction.CallbackContext _)
         {
-            GameObject heldItem = _itemHolder.GetComponentsInChildren<GameObject>().FirstOrDefault();
-
-            if (heldItem == null) return;
+            if (_itemHolder.childCount == 0) return;
+            
+            GameObject heldItem = _itemHolder.GetChild(0).gameObject;
             
             var usable = heldItem.GetComponent<IUsable>();
             
@@ -87,15 +86,9 @@ namespace PlayerScripts
             {
                 var canBeUsedOn = hitInfo.collider.GetComponent<ICanBeUsedOn>();
 
-                if (canBeUsedOn != null)
-                {
-                    canBeUsedOn.UseWith(heldItem);
-                    usable.Use(heldItem);
-                }
-                else
-                {
-                    usable.Use();
-                }
+                if (canBeUsedOn != null) canBeUsedOn.UseWith(heldItem);
+                
+                usable.Use(hitInfo.collider.gameObject);
             }
             else
             {

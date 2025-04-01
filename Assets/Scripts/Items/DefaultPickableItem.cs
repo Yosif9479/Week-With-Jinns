@@ -12,16 +12,16 @@ namespace Items
         [SerializeField] private bool _useCustomPosition;
         [SerializeField] private Vector3 _customPosition;
         
-        private Rigidbody _rigidbody;
+        protected Rigidbody _rigidbody;
         private Camera _camera;
         private RigidbodyInterpolation _interpolation;
         
-        private void Awake()
+        protected virtual void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
         }
 
-        private void Start()
+        protected virtual void Start()
         {
             _rigidbody.isKinematic = false;
             _rigidbody.useGravity = true;
