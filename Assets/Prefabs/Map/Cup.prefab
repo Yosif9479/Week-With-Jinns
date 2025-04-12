@@ -339,7 +339,7 @@ MonoBehaviour:
   _customRotation: {x: 0, y: 0, z: 0}
   _useCustomPosition: 0
   _customPosition: {x: 0, y: 0, z: 0}
-  _water: {fileID: 0}
+  _water: {fileID: 7418735128595380918}
 --- !u!1 &6783959314608950685
 GameObject:
   m_ObjectHideFlags: 0
