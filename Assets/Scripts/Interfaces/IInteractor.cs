@@ -6,7 +6,7 @@ namespace Interfaces
 {
     public interface IInteractor
     {
-        public event UnityAction Interacted;
+        public event UnityAction<GameObject> Interacted;
         public event UnityAction ItemUsed;
         public event UnityAction ItemDropped;
 

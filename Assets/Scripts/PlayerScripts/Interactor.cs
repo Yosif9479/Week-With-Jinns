@@ -14,7 +14,7 @@ namespace PlayerScripts
         private Transform _itemHolder;
         private Camera _camera;
         
-        public event UnityAction Interacted;
+        public event UnityAction<GameObject> Interacted;
         public event UnityAction ItemUsed;
         public event UnityAction ItemDropped;
 
@@ -56,7 +56,7 @@ namespace PlayerScripts
                 DropItem(_);
                 hitInfo.collider.gameObject.transform.SetParent(_itemHolder);
                 pickable.OnPickedUp();
-                Interacted?.Invoke();
+                Interacted?.Invoke(hitInfo.collider.gameObject);
             }
             
             IInteractable interactable = hitInfo.collider.GetComponent<IInteractable>();
@@ -64,7 +64,7 @@ namespace PlayerScripts
             if (interactable != null)
             {
                 interactable.Interact();
-                Interacted?.Invoke();
+                Interacted?.Invoke(hitInfo.collider.gameObject);
             }
         }
 

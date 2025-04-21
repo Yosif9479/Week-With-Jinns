@@ -14,6 +14,9 @@ namespace Items
         [SerializeField] private AudioClip _openSound;
         [SerializeField] private AudioClip _closeSound;
         
+        [Header("Interaction")]
+        [SerializeField] private Transform _handleTransform;
+        
         private Quaternion _closedRotation;
         private Quaternion _openRotation;
         
@@ -22,6 +25,8 @@ namespace Items
         private bool _isRotating;
 
         private const float RotationFactor = 90f;
+        
+        public Transform HandleTransform => _handleTransform;
 
         private void Awake()
         {

@@ -30,7 +30,7 @@ namespace PlayerScripts
 
 		[Inject] private IPlayerMovement _movement;
 		[Inject] private IPlayerCameraController _cameraController;
-		[Inject] private IInteractor _interactor;
+		[Inject] public IInteractor Interactor;
 
 		private const int AllowedSleepHour = 9;
 		
@@ -41,7 +41,7 @@ namespace PlayerScripts
 			
 			_movement.Initialize(_movementSettingSettings, _character);
 			_cameraController.Initialize(_cameraSettings, transform);
-			_interactor.Initialize(_interactionSetting, _itemHolder);
+			Interactor.Initialize(_interactionSetting, _itemHolder);
 		}
 
 		private void Start()
