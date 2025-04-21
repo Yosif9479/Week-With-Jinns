@@ -23,6 +23,7 @@ namespace PlayerScripts
             ? _hand.parent.transform.InverseTransformPoint(_transformTarget.position)
             : _positionTarget;
 
+        #region MONO
         private void Awake()
         {
             _player = GetComponentInParent<Player>();
@@ -41,13 +42,29 @@ namespace PlayerScripts
         {
             MoveHand();
         }
+        
+        private void OnEnable() => _interactor.Interacted += OnInteracted;
+
+        private void OnDisable() => _interactor.Interacted -= OnInteracted;
+
+        #endregion
 
         private void MoveHand()
         {
             bool isAtInitial = Vector3.Distance(HandTarget, _initialTarget) < 0.01f;
             bool isTooFar = Vector3.Distance(_camera.transform.position, _hand.position) > _maxHandDistance;
+            
+            Vector3 targetWorldPosition = _hand.parent.TransformPoint(HandTarget);
 
-            if (!isAtInitial && isTooFar)
+            Vector3 toTarget = targetWorldPosition - _player.transform.position;
+            toTarget.y = 0;
+
+            Vector3 forward = _player.transform.forward;
+            forward.y = 0;
+
+            float handAngle = Vector3.Angle(forward, toTarget);
+            
+            if ((Mathf.Abs(handAngle) > 90 || isTooFar) && !isAtInitial)
             {
                 SetTarget(_initialTarget);
                 _animator.SetTrigger("Idle");
@@ -72,7 +89,8 @@ namespace PlayerScripts
 
             _animator.SetTrigger("Door");
         }
-
+        
+        #region UTILS
         private void SetTarget(Transform target)
         {
             _transformTarget = target;
@@ -84,9 +102,6 @@ namespace PlayerScripts
             _positionTarget = target;
             _transformTarget = null;
         }
-        
-        private void OnEnable() => _interactor.Interacted += OnInteracted;
-
-        private void OnDisable() => _interactor.Interacted -= OnInteracted;
+        #endregion
     }
 }
