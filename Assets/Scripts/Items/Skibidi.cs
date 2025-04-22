@@ -1,11 +1,11 @@
 ﻿using System.Collections;
-using Interfaces;
+using Basic;
 using UnityEngine;
 
 namespace Items
 {
     [RequireComponent(typeof(AudioSource))]
-    public class Skibidi : MonoBehaviour, IInteractable
+    public class Skibidi : DefaultInteractable
     {
         [SerializeField] private float _flushDurationSeconds;
         [SerializeField] private float _flushRefillSeconds;
@@ -20,7 +20,7 @@ namespace Items
             _audioSource = GetComponent<AudioSource>();
         }
 
-        public void Interact()
+        public override void Interact()
         {
             if (_isFlushing || _isRefilling) return;
             

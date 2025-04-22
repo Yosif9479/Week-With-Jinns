@@ -7,7 +7,6 @@ namespace Items
     [RequireComponent(typeof(AudioSource))]
     public class Cup :  DefaultPickableItem, ICanBeUsedOn, IUsable
     {
-        
         private AudioSource _audioSource;
         
         [SerializeField] private GameObject _water;

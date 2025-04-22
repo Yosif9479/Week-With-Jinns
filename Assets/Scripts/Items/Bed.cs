@@ -1,11 +1,11 @@
-﻿using Interfaces;
+﻿using Basic;
 using PlayerScripts;
 using UnityEngine;
 
 namespace Items
 {
     [RequireComponent(typeof(Collider))]
-    public class Bed : MonoBehaviour, IInteractable
+    public class Bed : DefaultInteractable
     {
         private Player _player;
 
@@ -16,7 +16,7 @@ namespace Items
             _player = FindFirstObjectByType<Player>();
         }
 
-        public void Interact()
+        public override void Interact()
         {
             _player.Sleep(_sleepTransform.position,  _sleepTransform.rotation);
         }

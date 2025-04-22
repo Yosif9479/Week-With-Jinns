@@ -222,6 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a64e39caadf4d17bffdc1defc24f1ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animatorOverride: {fileID: 22100000, guid: 1fed74b7333e7ed4a9b43cbfbf27705c, type: 2}
   _openByDefault: 0
   _rotationTimeSeconds: 0.5
   _openSound: {fileID: 8300000, guid: 4f2eddb3b895b7b47a85f5b79a01249d, type: 3}

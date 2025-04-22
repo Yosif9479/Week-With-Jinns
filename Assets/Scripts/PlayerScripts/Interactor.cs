@@ -15,8 +15,8 @@ namespace PlayerScripts
         private Camera _camera;
         
         public event UnityAction<GameObject> Interacted;
-        public event UnityAction ItemUsed;
-        public event UnityAction ItemDropped;
+        public event UnityAction<GameObject> ItemUsed;
+        public event UnityAction<GameObject> ItemDropped;
 
         public Interactor(PlayerInput input)
         {
@@ -96,7 +96,7 @@ namespace PlayerScripts
             }
             
             
-            ItemUsed?.Invoke();
+            ItemUsed?.Invoke(heldItem);
         }
 
         private void DropItem(InputAction.CallbackContext _)
@@ -115,7 +115,7 @@ namespace PlayerScripts
                 
                 pickable.OnDropped();
 
-                ItemDropped?.Invoke();
+                ItemDropped?.Invoke(item.gameObject);
 
                 break;
             }

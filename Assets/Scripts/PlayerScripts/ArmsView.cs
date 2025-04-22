@@ -1,11 +1,17 @@
 ﻿using Interfaces;
 using Items;
+using ItemScripts;
 using UnityEngine;
 
 namespace PlayerScripts
 {
     public class ArmsView : MonoBehaviour
     {
+        private static readonly int Pickup = Animator.StringToHash("Pickup");
+        private static readonly int Interact = Animator.StringToHash("Interact");
+        private static readonly int Use = Animator.StringToHash("Use");
+        private static readonly int Drop = Animator.StringToHash("Drop");
+        
         [SerializeField] private Transform _hand;
 
         [SerializeField] private float _movementSpeed = 1f;
@@ -43,9 +49,19 @@ namespace PlayerScripts
             MoveHand();
         }
         
-        private void OnEnable() => _interactor.Interacted += OnInteracted;
+        private void OnEnable()
+        {
+            _interactor.Interacted += OnInteracted;
+            _interactor.ItemUsed += OnItemUsed;
+            _interactor.ItemDropped += OnItemDropped;
+        }
 
-        private void OnDisable() => _interactor.Interacted -= OnInteracted;
+        private void OnDisable()
+        {
+            _interactor.Interacted -= OnInteracted;
+            _interactor.ItemUsed -= OnItemUsed;
+            _interactor.ItemDropped -= OnItemDropped;
+        }
 
         #endregion
 
@@ -67,7 +83,6 @@ namespace PlayerScripts
             if ((Mathf.Abs(handAngle) > 90 || isTooFar) && !isAtInitial)
             {
                 SetTarget(_initialTarget);
-                _animator.SetTrigger("Idle");
                 return;
             }
             
@@ -79,6 +94,35 @@ namespace PlayerScripts
             if (item == null) return;
 
             if (item.GetComponent<Door>() is Door door) HandleDoor(door);
+
+            if (item.GetComponent<IPickable>() is IPickable pickable)
+            {
+                _animator.runtimeAnimatorController = pickable.AnimatorOverride();
+                _animator.SetTrigger(Pickup);
+            }
+            else if (item.GetComponent<IInteractable>() is IInteractable interactable)
+            {
+                _animator.runtimeAnimatorController = interactable.AnimatorOverride();
+                _animator.SetTrigger(Interact);
+            }
+        }
+        
+        private void OnItemUsed(GameObject item)
+        {
+            if (item.GetComponent<IUsable>() is not IUsable usable) return;
+            
+            _animator.runtimeAnimatorController = usable.AnimatorOverride();
+            
+            _animator.SetTrigger(Use);
+        }
+
+        private void OnItemDropped(GameObject item)
+        {
+            if (item.GetComponent<Pickable>() is not IPickable pickable) return;
+            
+            _animator.runtimeAnimatorController = pickable.AnimatorOverride();
+            
+            _animator.SetTrigger(Drop);
         }
 
         private void HandleDoor(Door door)
@@ -86,8 +130,6 @@ namespace PlayerScripts
             if (door == null) return;
 
             SetTarget(door.HandleTransform);
-
-            _animator.SetTrigger("Door");
         }
         
         #region UTILS

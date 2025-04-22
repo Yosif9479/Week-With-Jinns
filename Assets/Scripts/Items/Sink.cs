@@ -1,12 +1,12 @@
-﻿using Enums;
-using Interfaces;
+﻿using Basic;
+using Enums;
 using PlayerScripts;
 using TaskScripts;
 using UnityEngine;
 
 namespace Items
 {
-    public class Sink : MonoBehaviour, IInteractable
+    public class Sink : DefaultInteractable
     {
         [SerializeField] private GameObject _water;
         [SerializeField] private Transform _handleTransform;
@@ -25,7 +25,7 @@ namespace Items
             _handleClosedRotation = _handleTransform.localRotation;
         }
         
-        public void Interact()
+        public override void Interact()
         {
             _water.SetActive(!_water.activeInHierarchy);
             

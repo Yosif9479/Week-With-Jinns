@@ -1,11 +1,10 @@
-﻿using Interfaces;
+﻿using Basic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Items
 {
     [RequireComponent(typeof(AudioSource))]
-    public class Door : MonoBehaviour, IInteractable
+    public class Door : DefaultInteractable
     {
         [SerializeField] private bool _openByDefault;
         [SerializeField] private float _rotationTimeSeconds = 1f;
@@ -56,7 +55,7 @@ namespace Items
             if (_isRotating) Rotate();
         }
         
-        public void Interact()
+        public override void Interact()
         {
             if (_isRotating) return;
     

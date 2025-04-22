@@ -1,13 +1,12 @@
-﻿using Interfaces;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Basic
 {
-	public class BooleanButton : MonoBehaviour, IInteractable
+	public class BooleanButton : DefaultInteractable
 	{
 		[SerializeField] private GameObject _target;
 		
-		public void Interact()
+		public override void Interact()
 		{
 			_target.SetActive(!_target.activeInHierarchy);
 		}
