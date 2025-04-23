@@ -68,8 +68,7 @@ namespace PlayerScripts
         private void MoveHand()
         {
             bool isAtInitial = Vector3.Distance(HandTarget, _initialTarget) < 0.01f;
-            bool isTooFar = Vector3.Distance(_camera.transform.position, _hand.position) > _maxHandDistance;
-            
+            bool isTooFar = Vector3.Distance(_player.transform.position, _hand.position) > _maxHandDistance;
             Vector3 targetWorldPosition = _hand.parent.TransformPoint(HandTarget);
 
             Vector3 toTarget = targetWorldPosition - _player.transform.position;

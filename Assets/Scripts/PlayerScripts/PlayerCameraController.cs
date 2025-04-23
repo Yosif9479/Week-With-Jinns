@@ -45,7 +45,7 @@ namespace PlayerScripts
 			
 			if (cameraRotation.x > 180) cameraRotation.x -= 360;
 			
-			cameraRotation.x = Mathf.Clamp(cameraRotation.x, -89f, 89f);
+			cameraRotation.x = Mathf.Clamp(cameraRotation.x, -75, 75f);
 			
 			_camera.transform.localRotation = Quaternion.Euler(cameraRotation);
 			_transform.rotation = Quaternion.Euler(playerRotation);
