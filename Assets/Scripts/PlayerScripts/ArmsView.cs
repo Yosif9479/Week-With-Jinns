@@ -1,4 +1,5 @@
-﻿using Interfaces;
+﻿using System.Linq;
+using Interfaces;
 using Items;
 using ItemScripts;
 using UnityEngine;
@@ -128,7 +129,11 @@ namespace PlayerScripts
         {
             if (door == null) return;
 
-            SetTarget(door.HandleTransform);
+            Transform closestHandle = door.Handles.OrderBy(x => Vector3.Distance(x.position, _hand.position)).FirstOrDefault();
+
+            if (closestHandle == null) return;
+            
+            SetTarget(closestHandle);
         }
         
         #region UTILS
